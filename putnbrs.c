@@ -6,11 +6,11 @@
 /*   By: mcauchy- <mcauchy-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/14 11:07:29 by mcauchy-          #+#    #+#             */
-/*   Updated: 2024/11/14 14:06:26 by mcauchy-         ###   ########.fr       */
+/*   Updated: 2024/11/16 14:59:24 by mcauchy-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "printf.h"
+#include "ft_printf.h"
 
 int	ft_putnbr_u(unsigned int n)
 {
@@ -24,7 +24,7 @@ int	ft_putnbr_u(unsigned int n)
 	}
 	if (n < 10)
 	{
-		count += ft_putchar(n);
+		count += ft_putchar(n + '0');
 	}
 	return (count);
 }
@@ -37,19 +37,70 @@ int ft_putnbr(int nb)
     if (nb == -2147483648)
 	{
         ft_putstr("-2147483648");
-		return (12);
+		return (11);
 	}
 	if (nb < 0)
 	{
         nb = -nb;
-        ft_putchar('-');
+        count = ft_putchar('-');
 	}
-	if (nb > 0)
+	if (nb >= 10)
 	{
-        nb = ft_putnbr(nb / 10);
-        nb = ft_putnbr(nb % 10);
+        count += ft_putnbr(nb / 10);
+        count += ft_putnbr(nb % 10);
 	}
 	else
-        ft_putchar(nb + '0');
+        count += ft_putchar(nb + '0');
     return (count);
+}
+
+int	ft_putnbr_hex_x(unsigned int nb)
+{
+	int	count;
+	char	*base;
+	
+	count = 0;
+	base = "0123456789abcdef";
+	if (nb >= 16)
+	{
+		count += ft_putnbr_hex_x(nb / 16);
+		count += ft_putnbr_hex_x(nb % 16);
+	}
+	else
+		count += ft_putchar(base[nb % 16]);
+	return (count);
+}
+
+int	ft_putnbr_hex_X(unsigned int nb)
+{
+	int	count;
+	char	*base;
+	
+	count = 0;
+	base = "0123456789ABCDEF";
+	if (nb >= 16)
+	{
+		count += ft_putnbr_hex_X(nb / 16);
+		count += ft_putnbr_hex_X(nb % 16);
+	}
+	else
+		count += ft_putchar(base[nb % 16]);
+	return (count);
+}
+
+int	ft_putnbr_hex_p(unsigned long p)
+{
+	int				count;
+	char			*base;
+
+	count = 0;
+	base = "0123456789abcdef";
+	if (p >= 16)
+	{
+		count += ft_putnbr_hex_p(p / 16);
+		count += ft_putnbr_hex_p(p % 16);
+	}
+	else
+		count += ft_putchar(base[p % 16]);
+	return (count);
 }

@@ -6,20 +6,29 @@
 /*   By: mcauchy- <mcauchy-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/14 11:45:40 by mcauchy-          #+#    #+#             */
-/*   Updated: 2024/11/14 14:23:57 by mcauchy-         ###   ########.fr       */
+/*   Updated: 2024/11/16 15:00:29 by mcauchy-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "printf.h"
+#include "ft_printf.h"
 
 int	ft_search_p(va_list arg)
 {
-	int		count;
-	void	*p;
+	int				count;
+	unsigned long	p;
 
-	p = (void *)va_arg(arg, void *);
-	count += ft_putstr("0x");
-	count += putnbr_hexa_p(p);
+	count = 0;
+	p = (unsigned long)va_arg(arg, unsigned long);
+	if (p)
+	{
+		  count += ft_putstr("0x");
+		count += ft_putnbr_hex_p(p);
+	}
+	else if (!p)
+	{
+		write(1, "(nil)", 5);
+		return (5);
+	}
 	return (count);
 }
 
@@ -29,7 +38,7 @@ int	ft_search_x(va_list arg)
 	unsigned int	nb;
 
 	nb = (unsigned int)va_arg(arg, unsigned int);
-	count = putnbr_hex_x(nb);
+	count = ft_putnbr_hex_x(nb);
 	return (count);
 }
 int	ft_search_X(va_list arg)
@@ -38,6 +47,6 @@ int	ft_search_X(va_list arg)
 	unsigned int	nb;
 
 	nb = (unsigned int)va_arg(arg, unsigned int);
-	count = putnbr_hex_X(nb);
+	count = ft_putnbr_hex_X(nb);
 	return (count);
 }
