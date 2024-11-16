@@ -6,15 +6,15 @@
 /*   By: mcauchy- <mcauchy-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/12 16:52:49 by mcauchy-          #+#    #+#             */
-/*   Updated: 2024/11/16 13:55:10 by mcauchy-         ###   ########.fr       */
+/*   Updated: 2024/11/16 15:08:31 by mcauchy-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-int ft_search_s(va_list arg)
+int	ft_search_s(va_list arg)
 {
-    int		count;
+	int		count;
 	char	*str;
 
 	str = (char *)va_arg(arg, char *);
@@ -39,12 +39,12 @@ int	ft_search_c(va_list arg)
 
 	c = (int)va_arg(arg, int);
 	count = ft_putchar(c);
-	return (count);	
+	return (count);
 }
 
 int	ft_search_u(va_list arg)
 {
-	int	count;
+	int				count;
 	unsigned int	n;
 
 	n = (unsigned int)va_arg(arg, unsigned int);

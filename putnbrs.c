@@ -6,7 +6,7 @@
 /*   By: mcauchy- <mcauchy-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/14 11:07:29 by mcauchy-          #+#    #+#             */
-/*   Updated: 2024/11/16 14:59:24 by mcauchy-         ###   ########.fr       */
+/*   Updated: 2024/11/16 15:14:30 by mcauchy-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,36 +29,36 @@ int	ft_putnbr_u(unsigned int n)
 	return (count);
 }
 
-int ft_putnbr(int nb)
+int	ft_putnbr(int nb)
 {
-    int count;
+	int	count;
 
-    count = 0;
-    if (nb == -2147483648)
+	count = 0;
+	if (nb == -2147483648)
 	{
-        ft_putstr("-2147483648");
+		ft_putstr("-2147483648");
 		return (11);
 	}
 	if (nb < 0)
 	{
-        nb = -nb;
-        count = ft_putchar('-');
+		nb = -nb;
+		count = ft_putchar('-');
 	}
 	if (nb >= 10)
 	{
-        count += ft_putnbr(nb / 10);
-        count += ft_putnbr(nb % 10);
+		count += ft_putnbr(nb / 10);
+		count += ft_putnbr(nb % 10);
 	}
 	else
-        count += ft_putchar(nb + '0');
-    return (count);
+		count += ft_putchar(nb + '0');
+	return (count);
 }
 
 int	ft_putnbr_hex_x(unsigned int nb)
 {
-	int	count;
+	int		count;
 	char	*base;
-	
+
 	count = 0;
 	base = "0123456789abcdef";
 	if (nb >= 16)
@@ -71,17 +71,17 @@ int	ft_putnbr_hex_x(unsigned int nb)
 	return (count);
 }
 
-int	ft_putnbr_hex_X(unsigned int nb)
+int	ft_putnbr_hex_xx(unsigned int nb)
 {
-	int	count;
+	int		count;
 	char	*base;
-	
+
 	count = 0;
 	base = "0123456789ABCDEF";
 	if (nb >= 16)
 	{
-		count += ft_putnbr_hex_X(nb / 16);
-		count += ft_putnbr_hex_X(nb % 16);
+		count += ft_putnbr_hex_xx(nb / 16);
+		count += ft_putnbr_hex_xx(nb % 16);
 	}
 	else
 		count += ft_putchar(base[nb % 16]);

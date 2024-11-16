@@ -6,17 +6,17 @@
 /*   By: mcauchy- <mcauchy-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/11 15:23:11 by mcauchy-          #+#    #+#             */
-/*   Updated: 2024/11/16 14:17:57 by mcauchy-         ###   ########.fr       */
+/*   Updated: 2024/11/16 15:09:51 by mcauchy-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-int ft_print_exec(va_list arg, char *format)
+int	ft_print_exec(va_list arg, char *format)
 {
-    if (*format == 's')
-	  return (ft_search_s(arg));
-    else if (*format == 'c')
+	if (*format == 's')
+		return (ft_search_s(arg));
+	else if (*format == 'c')
 		return (ft_search_c(arg));
 	else if (*format == 'p')
 		return (ft_search_p(arg));
@@ -24,8 +24,8 @@ int ft_print_exec(va_list arg, char *format)
 		return (ft_search_d_i(arg));
 	else if (*format == 'x')
 		return (ft_search_x(arg));
-	else if(*format == 'X')
-		return (ft_search_X(arg));
+	else if (*format == 'X')
+		return (ft_search_xx(arg));
 	else if (*format == 'u')
 		return (ft_search_u(arg));
 	else if (*format == '%')
@@ -50,7 +50,7 @@ int	ft_printf(const char *format, ...)
 			res += ft_print_exec(arg, (char *)format + i + 1);
 			i++;
 		}
-		else 
+		else
 			res += ft_putchar(format[i]);
 		i++;
 	}
